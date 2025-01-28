@@ -19,14 +19,15 @@ struct InitialView: View
 
         VStack
         {
-            Text("ready.title")
-
-            Button
+            if appState.isLoading
             {
-                appState.navigate(to: .overview)
-            } label: {
-                Text("Go")
+                WorkingView()
             }
+            else
+            {
+                Text("ready.title")
+            }
+            
         }
         .toolbar
         {
@@ -47,7 +48,7 @@ struct InitialView: View
             case .success(let success):
                 Task
                 {
-                    loadedAppTracker.loadedAppDetails = await loadedAppTracker.loadApp(fromURL: success.first!)
+                    await loadedAppTracker.loadApp(fromURL: success.first!, appState: appState)
                     
                     appState.navigate(to: .overview)
                 }

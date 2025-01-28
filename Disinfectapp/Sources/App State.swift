@@ -11,6 +11,8 @@ import SwiftUI
 @Observable
 class AppState
 {
+    var isLoading: Bool = false
+    
     var navigationPath: NavigationPath = .init()
 
     func navigate(to destination: NavigationDestination)

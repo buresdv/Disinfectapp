@@ -20,8 +20,6 @@ public struct ContentView: View
                         {
                         case .overview:
                             OverviewView(appDetails: loadedAppTracker.loadedAppDetails)
-                        case .working:
-                            WorkingView()
                         case .finished:
                             Text("Hello")
                         case .root:
@@ -30,7 +28,7 @@ public struct ContentView: View
                     }
                     .navigationTitle(destination.description)
                 }
-                .onDrop(of: [.application], delegate: AppDropDelegate())
+                .onDrop(of: [.application], delegate: AppDropDelegate(loadedAppTracker: loadedAppTracker, appState: appState))
         }
     }
 }
