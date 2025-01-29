@@ -16,6 +16,7 @@ enum AppIconDiscoveryError: LocalizedError
 
 extension LoadedAppTracker
 {
+    // Load app information from that app's URL, and set the correct state for the UI
     func loadApp(fromURL url: URL, appState: AppState) async
     {
         appState.isLoading = true
@@ -29,7 +30,7 @@ extension LoadedAppTracker
 
         let appResourcesURL: URL = appBundleURL.appendingPathComponent("Resources", conformingTo: .folder)
 
-        let appName: String = url.lastPathComponent
+        let appName: String = url.deletingPathExtension().lastPathComponent
 
         let appIcon: Image? = {
             do throws(AppIconDiscoveryError)
@@ -51,14 +52,18 @@ extension LoadedAppTracker
                 }
             }            
         }()
-
-        let constructedDetails: AppDetails = .init(url: url, name: appName, icon: appIcon)
+        
+        async let constructedAttributes: AppAttributes = await url.loadAttributes()
+        
+        let constructedDetails: AppDetails = .init(url: url, name: appName, icon: appIcon, isQuarantined: false)
         
         self.loadedAppDetails = constructedDetails
+        self.appAttributes = await constructedAttributes
         
         appState.navigate(to: .overview)
     }
 
+    /// Retrieve the complete URL to an Application's icon
     private func discoverAppIconURL(fromBundleURL bundleURL: URL, usingAppResourcesURL resourcesURL: URL) throws(AppIconDiscoveryError) -> URL
     {
         let plistURL: URL = bundleURL.appendingPathComponent("Info", conformingTo: .propertyList)

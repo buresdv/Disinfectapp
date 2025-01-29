@@ -11,7 +11,9 @@ let project = Project(
             infoPlist: .default,
             sources: ["Disinfectapp/Sources/**"],
             resources: ["Disinfectapp/Resources/**"],
-            dependencies: []
+            dependencies: [
+                .external(name: "XAttr")
+            ]
         ),
         .target(
             name: "DisinfectappTests",

@@ -1,0 +1,15 @@
+{
+  "originHash" : "082408081e8356c789733ad228563985f0ef7724f6b396aeaa40abdacfe705a5",
+  "pins" : [
+    {
+      "identity" : "swift-xattr",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jozefizso/swift-xattr",
+      "state" : {
+        "revision" : "1cd1e6bc9aecdcce31c66e2d2d5561ecd7ead83a",
+        "version" : "3.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}

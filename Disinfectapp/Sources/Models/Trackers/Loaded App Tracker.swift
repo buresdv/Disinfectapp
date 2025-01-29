@@ -13,6 +13,8 @@ class LoadedAppTracker
 {
     var loadedAppDetails: LoadedAppTracker.AppDetails?
     
+    var appAttributes: AppAttributes?
+    
     func clearLoadedApp()
     {
         self.loadedAppDetails = nil
@@ -24,5 +26,12 @@ class LoadedAppTracker
         var name: String
         
         var icon: Image?
+        
+        var isQuarantined: Bool
+    }
+    
+    struct AppAttributes
+    {
+        var isQuarantined: Bool
     }
 }

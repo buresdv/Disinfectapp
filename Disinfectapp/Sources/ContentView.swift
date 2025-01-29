@@ -19,7 +19,7 @@ public struct ContentView: View
                         switch destination
                         {
                         case .overview:
-                            OverviewView(appDetails: loadedAppTracker.loadedAppDetails)
+                            OverviewView(appDetails: loadedAppTracker.loadedAppDetails, appAttributes: loadedAppTracker.appAttributes)
                         case .finished:
                             Text("Hello")
                         case .root:

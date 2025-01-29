@@ -13,6 +13,8 @@ class AppState
 {
     var isLoading: Bool = false
     
+    var overviewStage: OverviewStage = .ready
+    
     var navigationPath: NavigationPath = .init()
 
     func navigate(to destination: NavigationDestination)

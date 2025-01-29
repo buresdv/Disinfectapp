@@ -9,7 +9,7 @@ import Foundation
 
 enum NavigationDestination: CustomStringConvertible
 {
-    case overview, finished
+    case overview
 
     case root
 
@@ -19,8 +19,6 @@ enum NavigationDestination: CustomStringConvertible
         {
         case .overview:
             return String(localized: "navigation.overview.title")
-        case .finished:
-            return String(localized: "navigation.finished.title")
         case .root:
             return String(localized: "navigation.root.title")
         }
